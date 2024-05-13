@@ -1,1 +1,8 @@
 # Proyecto caso de uso Redis Cache
+Un periódico desea tener una base de datos para almacenar la información referente a los periodistas que trabajan el dicho periódico. Además, se almacenará información referente a las noticias que cubren los periodistas y las agencias de noticias que trabajan con el periódico.
+
+De los periodistas se almacenará un código identificativo, nombre, dirección teléfono y el número de noticias que ha cubierto. De las noticias cubiertas por los periodistas, se almacenará un código, la fecha y hora de la noticia, el titular y el texto. Además, se almacenará que noticias están relacionadas entre sí. Hay que tener en cuenta que en una noticia puede haber varios implicados y que un implicado lo puede ser de distintas noticias. De estos implicados, se almacenará un código, nombre, fecha de nacimiento y calidad en la que aparece como implicado en cada noticia.
+
+Cuando se produce una noticia, uno o varios periodistas la pueden cubrir, así como un periodista, por supuesto, puede cubrir varias noticias. A la hora de cubrir la noticia, los periodistas pueden hablar con los implicados en dicha noticia. Un periodista podrá hablar con varios implicados y un implicado ser preguntado por varios periodistas, eso sí, referente a distintas noticias en la que estén implicados. Se desea conocer qué periodista habla con cual implicado respecto a cuál noticia.
+
+Por otro lado, de las agencias de noticias que trabajan con el periódico se desea almacenar un código de agencia, el nombre y el año de creación. Se desea almacenar qué agencia o agencias han dado cada noticia, siendo importante la hora en la que han dado la noticia para comprobar cual agencia es más rápida en dar una determinada noticia.
