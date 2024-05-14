@@ -23,7 +23,17 @@ public class AgencyNewController {
 
     @PostMapping
     public void create(@RequestBody AgencyNew agencyNew) {
+        System.out.println(agencyNew);
+
         agencyNewService.create(agencyNew);
+    }
+
+    @GetMapping("/{idAgency}/{idNew}")
+    public AgencyNew getById(@PathVariable long idAgency, @PathVariable long idNew) {
+        AgencyNewKey agencyNewKey = new AgencyNewKey();
+        agencyNewKey.setAgencyId(idAgency);
+        agencyNewKey.setNewId(idNew);
+        return agencyNewService.findById(agencyNewKey);
     }
 
     @PutMapping("/{idAgency}/{idNew}")

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.uptc.frm.rediscache.jpa.entity.key.AgencyNewKey;
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "AGENCIA_NOTICIAS")
 @IdClass(AgencyNewKey.class)
@@ -18,15 +20,15 @@ public class AgencyNew {
     private long newId;
 
     @Column(name = "FECHA_CUBRIMIENTO")
-    private String coverageDate;
+    private Date coverageDate;
 
     @ManyToOne
-    @JoinColumn(name = "ID_NOTICIA")
+    @JoinColumn(name = "ID_NOTICIA", nullable = false, insertable = false, updatable = false)
     @JsonIgnore
     private New aNew;
 
     @ManyToOne
-    @JoinColumn(name = "ID_AGENCIA")
+    @JoinColumn(name = "ID_AGENCIA", nullable = false, insertable = false, updatable = false)
     @JsonIgnore
     private Agency agency;
 
@@ -65,11 +67,20 @@ public class AgencyNew {
         this.newId = newId;
     }
 
-    public String getCoverageDate() {
+    public Date getCoverageDate() {
         return coverageDate;
     }
 
-    public void setCoverageDate(String coverageDate) {
+    public void setCoverageDate(Date coverageDate) {
         this.coverageDate = coverageDate;
+    }
+
+    @Override
+    public String toString() {
+        return "AgencyNew{" +
+                "coverageDate='" + coverageDate + '\'' +
+                ", newId=" + newId +
+                ", agencyId=" + agencyId +
+                '}';
     }
 }
