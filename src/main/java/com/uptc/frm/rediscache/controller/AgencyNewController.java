@@ -4,24 +4,30 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.uptc.frm.rediscache.jpa.entity.AgencyNew;
 import com.uptc.frm.rediscache.jpa.entity.key.AgencyNewKey;
 import com.uptc.frm.rediscache.service.AgencyNewService;
+import org.hibernate.annotations.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/agency-new")
+@CacheConfig(cacheNames = "agency-new")
 public class AgencyNewController {
 
     @Autowired
     private AgencyNewService agencyNewService;
 
     @GetMapping
+    @Cacheable
     public List<AgencyNew> getAll() {
         return agencyNewService.findAll();
     }
 
     @PostMapping
+    @Cacheable
     public void create(@RequestBody AgencyNew agencyNew) {
         System.out.println(agencyNew);
 
@@ -29,6 +35,7 @@ public class AgencyNewController {
     }
 
     @GetMapping("/{idAgency}/{idNew}")
+    @Cacheable(key = "#idAgency", value = "agency-new")
     public AgencyNew getById(@PathVariable long idAgency, @PathVariable long idNew) {
         AgencyNewKey agencyNewKey = new AgencyNewKey();
         agencyNewKey.setAgencyId(idAgency);
@@ -37,6 +44,7 @@ public class AgencyNewController {
     }
 
     @PutMapping("/{idAgency}/{idNew}")
+    @Cacheable
     public AgencyNew update(@PathVariable long idAgency, @PathVariable long idNew, @RequestBody AgencyNew agencyNew) {
         AgencyNewKey agencyNewKey1 = new AgencyNewKey();
         agencyNewKey1.setAgencyId(idAgency);
@@ -45,6 +53,7 @@ public class AgencyNewController {
     }
 
     @DeleteMapping("/{idAgency}/{idNew}")
+    @Cacheable
     public void deleteById(@PathVariable long idAgency, @PathVariable long idNew) {
         AgencyNewKey agencyNewKey = new AgencyNewKey();
         agencyNewKey.setAgencyId(idAgency);
