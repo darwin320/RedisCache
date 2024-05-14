@@ -7,25 +7,25 @@ import java.io.Serializable;
 @Embeddable
 public class AgencyNewKey implements Serializable{
 
-    private long idAgencia;
-    private long idNoticia;
+    private long agencyId;
+    private long newId;
 
     public AgencyNewKey() {
     }
 
-    public long getIdAgencia() {
-        return idAgencia;
+    public long getAgencyId() {
+        return agencyId;
     }
 
-    public void setIdAgencia(long idAgencia) {
-        this.idAgencia = idAgencia;
+    public void setAgencyId(long agencyId) {
+        this.agencyId = agencyId;
     }
 
-    public long getIdNoticia() {
-        return idNoticia;
+    public long getNewId() {
+        return newId;
     }
 
-    public void setIdNoticia(long idNoticia) {
-        this.idNoticia = idNoticia;
+    public void setNewId(long newId) {
+        this.newId = newId;
     }
 }
