@@ -1,5 +1,6 @@
 package com.uptc.frm.rediscache.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.uptc.frm.rediscache.jpa.entity.key.AgencyNewKey;
 import jakarta.persistence.*;
 
@@ -21,10 +22,12 @@ public class AgencyNew {
 
     @ManyToOne
     @JoinColumn(name = "ID_NOTICIA")
+    @JsonIgnore
     private New aNew;
 
     @ManyToOne
     @JoinColumn(name = "ID_AGENCIA")
+    @JsonIgnore
     private Agency agency;
 
     public AgencyNew() {

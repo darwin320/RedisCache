@@ -1,7 +1,10 @@
 package com.uptc.frm.rediscache.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -10,10 +13,12 @@ public class New {
 
     @Id
     @Column(name = "ID_NOTICIA")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "newGen")
+    @SequenceGenerator(name = "newGen",sequenceName = "NOTICIAS_SEQ", allocationSize = 1)
     private long idNoticas;
 
     @Column(name = "FECHA")
-    private String date;
+    private Date date;
 
     @Column(name = "TITULAR")
     private String headline;
@@ -22,6 +27,7 @@ public class New {
     private String text;
 
     @OneToMany(mappedBy = "_new")
+    @JsonIgnore
     private List<InvolvedNews> involvedNews;
 
     @ManyToMany
@@ -29,15 +35,19 @@ public class New {
                 joinColumns = @JoinColumn(name = "ID_NOTICIA"),
                 inverseJoinColumns = @JoinColumn(name = "ID_NOTICIA_RELACIONADA")
     )
+    @JsonIgnore
     private List<New> newsRelated;
 
     @ManyToMany(mappedBy = "newsRelated")
+    @JsonIgnore
     private List<New> relatedNews;
 
     @OneToMany(mappedBy = "aNew")
+    @JsonIgnore
     private List<AgencyNew> agencyNews;
 
     @OneToMany(mappedBy = "aNew")
+    @JsonIgnore
     private List<Interview> interviews;
 
     public New() {
@@ -92,11 +102,11 @@ public class New {
         this.idNoticas = idNoticas;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -114,5 +124,15 @@ public class New {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    @Override
+    public String toString() {
+        return "New{" +
+                "idNoticas=" + idNoticas +
+                ", date=" + date +
+                ", headline='" + headline + '\'' +
+                ", text='" + text + '\'' +
+                '}';
     }
 }
