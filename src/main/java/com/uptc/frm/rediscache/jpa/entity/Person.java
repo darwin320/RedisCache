@@ -4,6 +4,7 @@ package com.uptc.frm.rediscache.jpa.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "PERSONAS")
@@ -26,8 +27,42 @@ public class Person {
     @Column(name = "TELEFONO")
     private String phoneNumber;
 
+    @OneToMany(mappedBy = "aNew")
+    private List<New> news;
+
+    @OneToMany(mappedBy = "involvedPerson")
+    private List<Person> involvedPersons;
+
+    @OneToMany(mappedBy = "journalist")
+    private List<Person> journalists;
+
+
 
     public Person() {
+    }
+
+    public List<New> getNews() {
+        return news;
+    }
+
+    public void setNews(List<New> news) {
+        this.news = news;
+    }
+
+    public List<Person> getInvolvedPersons() {
+        return involvedPersons;
+    }
+
+    public void setInvolvedPersons(List<Person> involvedPersons) {
+        this.involvedPersons = involvedPersons;
+    }
+
+    public List<Person> getJournalists() {
+        return journalists;
+    }
+
+    public void setJournalists(List<Person> journalists) {
+        this.journalists = journalists;
     }
 
     public int getId() {

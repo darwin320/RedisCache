@@ -19,7 +19,31 @@ public class AgencyNew {
     @Column(name = "FECHA_CUBRIMIENTO")
     private String coverageDate;
 
+    @ManyToOne
+    @JoinColumn(name = "ID_NOTICIA")
+    private New aNew;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_AGENCIA")
+    private Agency agency;
+
     public AgencyNew() {
+    }
+
+    public New getaNew() {
+        return aNew;
+    }
+
+    public void setaNew(New aNew) {
+        this.aNew = aNew;
+    }
+
+    public Agency getAgency() {
+        return agency;
+    }
+
+    public void setAgency(Agency agency) {
+        this.agency = agency;
     }
 
     public long getAgencyId() {

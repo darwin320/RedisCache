@@ -25,7 +25,44 @@ public class Interview {
     @Column(name = "PREGUNTA")
     private String question;
 
+    @ManyToOne
+    @JoinColumn(name = "ID_PERIODISTA")
+    private Person journalist;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_IMPLICADO")
+    private Person involvedPerson;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_NOTICIA")
+    private New aNew;
+
+
     public Interview() {
+    }
+
+    public Person getJournalist() {
+        return journalist;
+    }
+
+    public void setJournalist(Person journalist) {
+        this.journalist = journalist;
+    }
+
+    public Person getInvolvedPerson() {
+        return involvedPerson;
+    }
+
+    public void setInvolvedPerson(Person involvedPerson) {
+        this.involvedPerson = involvedPerson;
+    }
+
+    public New getaNew() {
+        return aNew;
+    }
+
+    public void setaNew(New aNew) {
+        this.aNew = aNew;
     }
 
     public int getIdInterview() {

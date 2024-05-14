@@ -1,12 +1,11 @@
 package com.uptc.frm.rediscache.jpa.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
-@Table(name = "Noticias")
+@Table(name = "NOTICIAS")
 public class New {
 
     @Id
@@ -22,7 +21,66 @@ public class New {
     @Column(name = "TEXTO")
     private String text;
 
+    @OneToMany(mappedBy = "_new")
+    private List<InvolvedNews> involvedNews;
+
+    @ManyToMany
+    @JoinTable(name = "NOTICIAS_RELACIONADAS",
+                joinColumns = @JoinColumn(name = "ID_NOTICIA"),
+                inverseJoinColumns = @JoinColumn(name = "ID_NOTICIA_RELACIONADA")
+    )
+    private List<New> newsRelated;
+
+    @ManyToMany(mappedBy = "newsRelated")
+    private List<New> relatedNews;
+
+    @OneToMany(mappedBy = "aNew")
+    private List<New> newsNews;
+
+    @OneToMany(mappedBy = "agency")
+    private List<New> agencyNews;
+
     public New() {
+    }
+
+    public List<New> getAgencyNews() {
+        return agencyNews;
+    }
+
+    public void setAgencyNews(List<New> agencyNews) {
+        this.agencyNews = agencyNews;
+    }
+
+    public List<New> getNewsNews() {
+        return newsNews;
+    }
+
+    public void setNewsNews(List<New> newsNews) {
+        this.newsNews = newsNews;
+    }
+
+    public List<InvolvedNews> getInvolvedNews() {
+        return involvedNews;
+    }
+
+    public void setInvolvedNews(List<InvolvedNews> involvedNews) {
+        this.involvedNews = involvedNews;
+    }
+
+    public List<New> getNewsRelated() {
+        return newsRelated;
+    }
+
+    public void setNewsRelated(List<New> newsRelated) {
+        this.newsRelated = newsRelated;
+    }
+
+    public List<New> getRelatedNews() {
+        return relatedNews;
+    }
+
+    public void setRelatedNews(List<New> relatedNews) {
+        this.relatedNews = relatedNews;
     }
 
     public long getIdNoticas() {

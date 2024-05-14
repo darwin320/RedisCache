@@ -1,7 +1,10 @@
 package com.uptc.frm.rediscache.jpa.entity;
 
+import com.uptc.frm.rediscache.jpa.entity.key.InvolvedNewsKey;
 import jakarta.persistence.*;
-
+@Entity
+@Table(name = "IMPLICADO_NOTICIAS")
+@IdClass(InvolvedNewsKey.class)
 public class InvolvedNews {
 
     @Id
@@ -10,13 +13,38 @@ public class InvolvedNews {
     @SequenceGenerator(name = "involveNewsGen", sequenceName = "IMPLICADO_NOTICIAS_SEQ", allocationSize = 1)
     private int idInterview;
 
-    @Column(name = "ID_NOTICIA")
+
+    @Column(name = "ID_NOTICIA",insertable = false, updatable = false)
     private int idNews;
 
     @Column(name = "CALIDAD")
     private String quality;
 
+    @ManyToOne
+    @JoinColumn(name = "ID_NOTICIA",nullable = false)
+    private New _new;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_IMPLICADO")
+    private Person involvedPerson;
+
+    public New get_new() {
+        return _new;
+    }
+
+    public void set_new(New _new) {
+        this._new = _new;
+    }
+
     public InvolvedNews() {
+    }
+
+    public Person getInvolvedPerson() {
+        return involvedPerson;
+    }
+
+    public void setInvolvedPerson(Person involvedPerson) {
+        this.involvedPerson = involvedPerson;
     }
 
     public int getIdInterview() {
