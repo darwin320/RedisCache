@@ -27,41 +27,32 @@ public class Person {
     @Column(name = "TELEFONO")
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "aNew")
-    private List<New> news;
-
     @OneToMany(mappedBy = "involvedPerson")
-    private List<Person> involvedPersons;
+    private List<InvolvedNews> involvedPersons;
 
     @OneToMany(mappedBy = "journalist")
-    private List<Person> journalists;
+    private List<Interview> journalists;
 
 
 
     public Person() {
     }
 
-    public List<New> getNews() {
-        return news;
-    }
 
-    public void setNews(List<New> news) {
-        this.news = news;
-    }
 
-    public List<Person> getInvolvedPersons() {
+    public List<InvolvedNews> getInvolvedPersons() {
         return involvedPersons;
     }
 
-    public void setInvolvedPersons(List<Person> involvedPersons) {
+    public void setInvolvedPersons(List<InvolvedNews> involvedPersons) {
         this.involvedPersons = involvedPersons;
     }
 
-    public List<Person> getJournalists() {
+    public List<Interview> getJournalists() {
         return journalists;
     }
 
-    public void setJournalists(List<Person> journalists) {
+    public void setJournalists(List<Interview> journalists) {
         this.journalists = journalists;
     }
 

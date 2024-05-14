@@ -35,29 +35,30 @@ public class New {
     private List<New> relatedNews;
 
     @OneToMany(mappedBy = "aNew")
-    private List<New> newsNews;
+    private List<AgencyNew> agencyNews;
 
-    @OneToMany(mappedBy = "agency")
-    private List<New> agencyNews;
+    @OneToMany(mappedBy = "aNew")
+    private List<Interview> interviews;
 
     public New() {
     }
 
-    public List<New> getAgencyNews() {
+    public List<Interview> getInterviews() {
+        return interviews;
+    }
+
+    public void setInterviews(List<Interview> interviews) {
+        this.interviews = interviews;
+    }
+
+    public List<AgencyNew> getAgencyNews() {
         return agencyNews;
     }
 
-    public void setAgencyNews(List<New> agencyNews) {
+    public void setAgencyNews(List<AgencyNew> agencyNews) {
         this.agencyNews = agencyNews;
     }
 
-    public List<New> getNewsNews() {
-        return newsNews;
-    }
-
-    public void setNewsNews(List<New> newsNews) {
-        this.newsNews = newsNews;
-    }
 
     public List<InvolvedNews> getInvolvedNews() {
         return involvedNews;

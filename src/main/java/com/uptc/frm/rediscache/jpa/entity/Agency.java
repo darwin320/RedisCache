@@ -3,6 +3,8 @@ package com.uptc.frm.rediscache.jpa.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "AGENCIAS")
 public class Agency {
@@ -19,8 +21,17 @@ public class Agency {
     @Column(name = "ANIO_CREACION")
     private String yearRelease;
 
-
+    @OneToMany(mappedBy = "agency")
+    private List<AgencyNew> agencyNews;
     public Agency() {
+    }
+
+    public List<AgencyNew> getAgencyNews() {
+        return agencyNews;
+    }
+
+    public void setAgencyNews(List<AgencyNew> agencyNews) {
+        this.agencyNews = agencyNews;
     }
 
     public int getId() {

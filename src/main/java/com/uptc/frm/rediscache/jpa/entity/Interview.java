@@ -13,13 +13,13 @@ public class Interview {
     @SequenceGenerator(name = "interviewGen", sequenceName = "ENTREVISTAS_SEQ", allocationSize = 1)
     private int idInterview;
 
-    @Column(name = "ID_PERIODISTA")
+    @Column(name = "ID_PERIODISTA",insertable = false, updatable = false)
     private int idJournalist;
 
-    @Column(name = "ID_IMPLICADO")
+    @Column(name = "ID_IMPLICADO",insertable = false, updatable = false)
     private int idInvolved;
 
-    @Column(name = "ID_NOTICIA")
+    @Column(name = "ID_NOTICIA",insertable = false, updatable = false)
     private int idNews;
 
     @Column(name = "PREGUNTA")
@@ -36,7 +36,6 @@ public class Interview {
     @ManyToOne
     @JoinColumn(name = "ID_NOTICIA")
     private New aNew;
-
 
     public Interview() {
     }
