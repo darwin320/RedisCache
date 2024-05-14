@@ -4,12 +4,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "NOTICIAS")
-public class New {
+public class New implements Serializable {
 
     @Id
     @Column(name = "ID_NOTICIA")

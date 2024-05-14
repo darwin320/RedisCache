@@ -4,12 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.uptc.frm.rediscache.jpa.entity.key.AgencyNewKey;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "AGENCIA_NOTICIAS")
 @IdClass(AgencyNewKey.class)
-public class AgencyNew {
+public class AgencyNew implements Serializable {
 
     @Id
     @Column(name = "ID_AGENCIA")
