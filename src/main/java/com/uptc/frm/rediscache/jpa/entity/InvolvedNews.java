@@ -2,10 +2,13 @@ package com.uptc.frm.rediscache.jpa.entity;
 
 import com.uptc.frm.rediscache.jpa.entity.key.InvolvedNewsKey;
 import jakarta.persistence.*;
+
+import java.io.Serializable;
+
 @Entity
 @Table(name = "IMPLICADO_NOTICIAS")
 @IdClass(InvolvedNewsKey.class)
-public class InvolvedNews {
+public class InvolvedNews implements Serializable {
 
     @Id
     @Column(name = "ID_IMPLICADO")
@@ -69,6 +72,7 @@ public class InvolvedNews {
     public void setQuality(String quality) {
         this.quality = quality;
     }
+
 
     @Override
     public String toString() {

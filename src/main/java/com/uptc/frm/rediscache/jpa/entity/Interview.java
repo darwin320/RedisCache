@@ -1,11 +1,14 @@
 package com.uptc.frm.rediscache.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 
 
 @Entity
 @Table(name = "ENTREVISTAS")
-public class Interview {
+public class Interview implements Serializable {
 
     @Id
     @Column(name = "ID_ENTREVISTA")
@@ -27,14 +30,17 @@ public class Interview {
 
     @ManyToOne
     @JoinColumn(name = "ID_PERIODISTA")
+    @JsonIgnore
     private Person journalist;
 
     @ManyToOne
     @JoinColumn(name = "ID_IMPLICADO")
+    @JsonIgnore
     private Person involvedPerson;
 
     @ManyToOne
     @JoinColumn(name = "ID_NOTICIA")
+    @JsonIgnore
     private New aNew;
 
     public Interview() {
@@ -103,6 +109,7 @@ public class Interview {
     public void setQuestion(String question) {
         this.question = question;
     }
+
 
     @Override
     public String toString() {

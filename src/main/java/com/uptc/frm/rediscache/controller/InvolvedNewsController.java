@@ -2,6 +2,7 @@ package com.uptc.frm.rediscache.controller;
 
 
 import com.uptc.frm.rediscache.jpa.entity.InvolvedNews;
+import com.uptc.frm.rediscache.jpa.entity.key.InvolvedNewsKey;
 import com.uptc.frm.rediscache.service.InvolvedNewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +21,12 @@ public class InvolvedNewsController {
         return involvedNewsService.findAll();
     }
 
-    @GetMapping("/{idInvolved}")
-    public InvolvedNews getInvolvedNewsById(@PathVariable int idInvolved) {
-        return involvedNewsService.findOne(idInvolved);
+    @GetMapping("/{idInterview}/{idNews}")
+    public InvolvedNews getInvolvedNewsById(@PathVariable int idInterview, @PathVariable int idNews) {
+        InvolvedNewsKey involvedNewsKey = new InvolvedNewsKey();
+        involvedNewsKey.setIdInterview(idInterview);
+        involvedNewsKey.setIdNews(idNews);
+        return involvedNewsService.findOne(involvedNewsKey);
     }
 
     @PostMapping
@@ -30,13 +34,19 @@ public class InvolvedNewsController {
         return involvedNewsService.saveInvolvednews(involvedNews);
     }
 
-    @PutMapping("/{idInvolved}")
-    public InvolvedNews updateInvolvedNews(@PathVariable int idInvolved, @RequestBody InvolvedNews news) {
-        return involvedNewsService.updateInvolvednews(idInvolved, news);
+    @PutMapping("/{idInterview}/{idNews}")
+    public InvolvedNews updateInvolvedNews(@PathVariable int idInterview, @PathVariable int idNews, @RequestBody InvolvedNews news) {
+        InvolvedNewsKey involvedNewsKey = new InvolvedNewsKey();
+        involvedNewsKey.setIdInterview(idInterview);
+        involvedNewsKey.setIdNews(idNews);
+        return involvedNewsService.updateInvolvednews(involvedNewsKey, news);
     }
 
-    @DeleteMapping("/{idInvolved}")
-    public void deleteInvolvedNews(@PathVariable int idInvolved) {
-        involvedNewsService.deleteInvolvednews(idInvolved);
+    @DeleteMapping("/{idInterview}/{idNews}")
+    public void deleteInvolvedNews(@PathVariable int idInterview, @PathVariable int idNews) {
+        InvolvedNewsKey involvedNewsKey = new InvolvedNewsKey();
+        involvedNewsKey.setIdInterview(idInterview);
+        involvedNewsKey.setIdNews(idNews);
+        involvedNewsService.deleteInvolvednews(involvedNewsKey);
     }
 }
