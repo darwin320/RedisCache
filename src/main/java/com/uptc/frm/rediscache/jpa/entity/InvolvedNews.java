@@ -13,7 +13,6 @@ public class InvolvedNews {
     @SequenceGenerator(name = "involveNewsGen", sequenceName = "IMPLICADO_NOTICIAS_SEQ", allocationSize = 1)
     private int idInterview;
 
-
     @Column(name = "ID_NOTICIA",insertable = false, updatable = false)
     private int idNews;
 
