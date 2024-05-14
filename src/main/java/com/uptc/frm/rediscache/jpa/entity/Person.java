@@ -37,6 +37,9 @@ public class Person implements Serializable {
     @OneToMany(mappedBy = "journalist")
     private List<Interview> journalists;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "involvedPerson")
+    private List<Interview> interviewPersons;
 
 
     public Person() {
@@ -98,6 +101,14 @@ public class Person implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public List<Interview> getInterviewPersons() {
+        return interviewPersons;
+    }
+
+    public void setInterviewPersons(List<Interview> interviewPersons) {
+        this.interviewPersons = interviewPersons;
     }
 
     @Override

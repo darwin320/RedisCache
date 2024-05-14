@@ -41,17 +41,21 @@ public class InterviewService {
         return interviewRepository.save(interview);
     }
 
-    public Interview update(int id, Interview interview) {
-        Interview interviewBd = findById(id);
-        if (interviewBd != null) {
-            interviewBd.setIdJournalist(interview.getIdJournalist());
-            interviewBd.setIdInvolved(interview.getIdInvolved());
-            interviewBd.setIdNews(interview.getIdNews());
-            interviewBd.setQuestion(interview.getQuestion());
-            return saveInterview(interview);
+    public Interview update(int id, Interview updatedInterview) {
+        Interview existingInterview = findById(id);
+        if (existingInterview != null) {
+            // Actualizar los campos de la entrevista existente con los valores del objeto actualizado
+            existingInterview.setIdJournalist(updatedInterview.getIdJournalist());
+            existingInterview.setIdInvolved(updatedInterview.getIdInvolved());
+            existingInterview.setIdNews(updatedInterview.getIdNews());
+            existingInterview.setQuestion(updatedInterview.getQuestion());
+
+            // Guardar la entrevista actualizada
+            return interviewRepository.save(existingInterview);
         }
         throw new RuntimeException("Entrevista no encontrada");
     }
+
 
     public void delete(int idInterview) {
         interviewRepository.deleteById(idInterview);

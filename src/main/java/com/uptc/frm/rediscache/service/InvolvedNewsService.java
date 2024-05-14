@@ -36,22 +36,26 @@ public class InvolvedNewsService {
 
     public InvolvedNews saveInvolvednews(InvolvedNews involvedNews) {
         New news = newService.findById((long) involvedNews.getIdNews());
-        Person involved = personService.findById(involvedNews.getIdInterview());
-
-        involvedNews.set_new(news);
-        involvedNews.setInvolvedPerson(involved);
+        Person involvedPerson = personService.findById(involvedNews.getIdInvolved());
         return involvedNewsRepository.save(involvedNews);
     }
+
 
     public InvolvedNews updateInvolvednews(InvolvedNewsKey id, InvolvedNews involvedNews) {
         InvolvedNews involvedNewsBd = findOne(id);
         if (involvedNewsBd != null) {
-            involvedNewsBd.setIdNews(involvedNews.getIdNews());
-            involvedNewsBd.setQuality(involvedNewsBd.getQuality());
-            return saveInvolvednews(involvedNewsBd);
+            New news = newService.findById((long) involvedNews.getIdNews());
+            Person involvedPerson = personService.findById(involvedNews.getIdInvolved());
+
+            involvedNewsBd.set_new(news);
+            involvedNewsBd.setInvolvedPerson(involvedPerson);
+            involvedNewsBd.setQuality(involvedNews.getQuality());
+
+            return involvedNewsRepository.save(involvedNewsBd);
         }
         throw new RuntimeException("Noticias de Implicados no encontradas");
     }
+
 
     public void deleteInvolvednews(InvolvedNewsKey id) {
         involvedNewsRepository.deleteById(id);

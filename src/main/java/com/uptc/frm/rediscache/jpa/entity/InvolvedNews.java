@@ -1,5 +1,6 @@
 package com.uptc.frm.rediscache.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.uptc.frm.rediscache.jpa.entity.key.InvolvedNewsKey;
 import jakarta.persistence.*;
 
@@ -12,22 +13,23 @@ public class InvolvedNews implements Serializable {
 
     @Id
     @Column(name = "ID_IMPLICADO")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "involveNewsGen")
-    @SequenceGenerator(name = "involveNewsGen", sequenceName = "IMPLICADO_NOTICIAS_SEQ", allocationSize = 1)
-    private int idInterview;
+    private int idInvolved;
 
-    @Column(name = "ID_NOTICIA",insertable = false, updatable = false)
+    @Id
+    @Column(name = "ID_NOTICIA", insertable = false, updatable = false)
     private int idNews;
 
     @Column(name = "CALIDAD")
     private String quality;
 
     @ManyToOne
-    @JoinColumn(name = "ID_NOTICIA",nullable = false)
+    @JoinColumn(name = "ID_NOTICIA", nullable = false, insertable = false, updatable = false)
+    @JsonIgnore
     private New _new;
 
     @ManyToOne
-    @JoinColumn(name = "ID_IMPLICADO")
+    @JoinColumn(name = "ID_IMPLICADO", nullable = false, insertable = false, updatable = false)
+    @JsonIgnore
     private Person involvedPerson;
 
     public New get_new() {
@@ -49,12 +51,12 @@ public class InvolvedNews implements Serializable {
         this.involvedPerson = involvedPerson;
     }
 
-    public int getIdInterview() {
-        return idInterview;
+    public int getIdInvolved() {
+        return idInvolved;
     }
 
-    public void setIdInterview(int idInterview) {
-        this.idInterview = idInterview;
+    public void setIdInvolved(int idInterview) {
+        this.idInvolved = idInterview;
     }
 
     public int getIdNews() {
@@ -77,7 +79,7 @@ public class InvolvedNews implements Serializable {
     @Override
     public String toString() {
         return "InvolvedNews{" +
-                "idInterview=" + idInterview +
+                "idInterview=" + idInvolved +
                 ", idNews=" + idNews +
                 ", quality='" + quality + '\'' +
                 '}';

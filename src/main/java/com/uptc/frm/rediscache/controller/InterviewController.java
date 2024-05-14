@@ -5,6 +5,7 @@ import com.uptc.frm.rediscache.jpa.entity.Interview;
 import com.uptc.frm.rediscache.jpa.repository.InterviewRepository;
 import com.uptc.frm.rediscache.service.InterviewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,11 +18,13 @@ public class InterviewController {
     private InterviewService interviewService;
 
     @GetMapping
+    @Cacheable(value = "interviews")
     public List<Interview> getAllInterviews() {
         return interviewService.findAll();
     }
 
     @GetMapping("/{idInterview}")
+    @Cacheable(value = "interview", key = "#idInterview")
     public Interview getByIdInterview(@PathVariable int idInterview) {
         return interviewService.findById(idInterview);
     }
