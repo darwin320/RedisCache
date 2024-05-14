@@ -3,6 +3,7 @@ package com.uptc.frm.rediscache.controller.dto;
 import com.uptc.frm.rediscache.jpa.entity.Person;
 import com.uptc.frm.rediscache.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class PersonController {
     private PersonService personService;
 
     @GetMapping("/{idPerson}")
+    @Cacheable(value = "person", key = "#idPerson")
     public Person getPersonById(@PathVariable int idPerson) {
         return personService.findById(idPerson);
     }

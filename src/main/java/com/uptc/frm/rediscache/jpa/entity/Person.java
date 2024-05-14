@@ -1,14 +1,16 @@
 package com.uptc.frm.rediscache.jpa.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "PERSONAS")
-public class Person {
+public class Person implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "PersonGen")
     @SequenceGenerator(name = "PersonGen",sequenceName = "PERSON_SEQ",allocationSize=1)
@@ -27,9 +29,11 @@ public class Person {
     @Column(name = "TELEFONO")
     private String phoneNumber;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "involvedPerson")
     private List<InvolvedNews> involvedPersons;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "journalist")
     private List<Interview> journalists;
 
