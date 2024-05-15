@@ -114,10 +114,10 @@
 	create sequence PERSON_SEQ start with 1 increment by 1 maxvalue 1000000 minvalue 1 nocycle;
 	create sequence AGENCIAS_SEQ start with 1 increment by 1 maxvalue 1000000 minvalue 1 nocycle;
 	create sequence NOTICIAS_SEQ start with 1 increment by 1 maxvalue 1000000 minvalue 1 nocycle;
-	create sequence NOTICIAS_RELACIONADAS_SEQ start with 1 increment by 1 maxvalue 1000000 minvalue 1 nocycle;
+	-- create sequence NOTICIAS_RELACIONADAS_SEQ start with 1 increment by 1 maxvalue 1000000 minvalue 1 nocycle;
 	create sequence AGENCIA_NOTICIAS_SEQ start with 1 increment by 1 maxvalue 1000000 minvalue 1 nocycle;
 	create sequence ENTREVISTAS_SEQ start with 1 increment by 1 maxvalue 1000000 minvalue 1 nocycle;
-	create sequence IMPLICADO_NOTICIAS_SEQ start with 1 increment by 1 maxvalue 1000000 minvalue 1 nocycle;
+	-- create sequence IMPLICADO_NOTICIAS_SEQ start with 1 increment by 1 maxvalue 1000000 minvalue 1 nocycle;
 
 	
 	
