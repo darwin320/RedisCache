@@ -22,6 +22,7 @@ public class PersonController {
     }
 
     @GetMapping
+    @Cacheable(value = "persons")
     public List<Person> getAllPersons() {
         return personService.findAll();
     }
